@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 class MeuComponente extends Component{
     constructor(props) {
         super(props)
+        this.adicionarNumero = this.adicionarNumero.bind(this)
+
         this.state = {numero: 5}
         console.log('construtor..');
     }
@@ -20,6 +22,17 @@ class MeuComponente extends Component{
         console.log('ComponentDidMount');
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate');
+        console.log('estado atual', this.state);
+        console.log('proximo estado', nextState);
+        return true
+    }
+
+    componentDidUpdate(){
+        console.log('componentDidUpdate...');
+    }
+
     adicionarNumero() {
         let NumeroAtual = this.state.numero
         NumeroAtual += 1
@@ -33,7 +46,7 @@ class MeuComponente extends Component{
             <p>Componente!!!</p>
             <p>{this.state.numero}</p>
             <p>{this.props.titulo}</p>
-            <button onClick={this.adicionarNumero.bind(this)}>Adicionar</button>
+            <button onClick={this.adicionarNumero}>Adicionar</button>
         </div>
         )
     }
